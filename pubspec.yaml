@@ -48,5 +48,5 @@ flutter:
 
   # No local assets are needed for this version of the code,
   # as the background is now dynamically drawn.
-  # assets:
-  #   - assets/hero-banner.jpg
+  assets:
+    - assets/hero-banner.jpg
