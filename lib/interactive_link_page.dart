@@ -71,8 +71,41 @@ class _InteractiveLinkPageState extends State<InteractiveLinkPage>
     return Scaffold(
       body: Stack(
         children: [
-          // Animated gradient background
-          AnimatedBackground(controller: _controller),
+          // Background image
+          Positioned.fill(
+            child: Image.asset(
+              '6937351.jpg',
+              fit: BoxFit.cover,
+            ),
+          ),
+          // Remove animated gradient overlay to avoid overlaying background image
+          // Positioned.fill(
+          //   child: AnimatedBuilder(
+          //     animation: _controller,
+          //     builder: (context, child) {
+          //       return Container(
+          //         decoration: BoxDecoration(
+          //           gradient: LinearGradient(
+          //             colors: [
+          //               Colors.deepPurple.shade900.withOpacity(0.6),
+          //               Colors.deepPurple.shade700.withOpacity(0.6),
+          //               Colors.teal.shade900.withOpacity(0.6),
+          //               Colors.teal.shade700.withOpacity(0.6),
+          //             ],
+          //             begin: Alignment.topLeft,
+          //             end: Alignment.bottomRight,
+          //             stops: [
+          //               (_controller.value - 0.3).clamp(0.0, 1.0),
+          //               (_controller.value - 0.1).clamp(0.0, 1.0),
+          //               (_controller.value + 0.1).clamp(0.0, 1.0),
+          //               (_controller.value + 0.3).clamp(0.0, 1.0),
+          //             ],
+          //           ),
+          //         ),
+          //       );
+          //     },
+          //   ),
+          // ),
           // Content
           SafeArea(
             child: FadeTransition(
@@ -85,6 +118,7 @@ class _InteractiveLinkPageState extends State<InteractiveLinkPage>
                         horizontal: 24, vertical: 40),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         ProfileHeader(),
                         const SizedBox(height: 32),
