@@ -46,7 +46,9 @@ flutter:
   # the material Icons class.
   uses-material-design: true
 
-  # No local assets are needed for this version of the code,
-  # as the background is now dynamically drawn.
+  # Added new background image asset
   assets:
     - assets/hero-banner.jpg
+    - assets/back.jpg
+    - assets/back(1).jpg
+    

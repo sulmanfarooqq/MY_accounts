@@ -1,3 +1,6 @@
+import 'dart:math';
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -17,25 +20,25 @@ class _InteractiveLinkPageState extends State<InteractiveLinkPage>
 
   final List<_LinkData> _links = [
     _LinkData(
-        icon: Icons.star,
-        label: 'Lifestyle Blog',
-        url: 'https://example.com/lifestyle'),
-    _LinkData(
-        icon: FontAwesomeIcons.tiktok,
-        label: 'Follow me on TikTok',
-        url: 'https://tiktok.com/@skinnedcartree'),
-    _LinkData(
-        icon: FontAwesomeIcons.twitter,
-        label: 'Follow me on Twitter',
-        url: 'https://twitter.com/skinnedcartree'),
-    _LinkData(
         icon: FontAwesomeIcons.instagram,
         label: 'Follow me on Instagram',
-        url: 'https://instagram.com/skinnedcartree'),
+        url: 'https://instagram.com/sulmanfarooqq'),
+    _LinkData(
+        icon: FontAwesomeIcons.github,
+        label: 'Follow me on GitHub',
+        url: 'https://github.com/sulmanfarooqq'),
+    _LinkData(
+        icon: FontAwesomeIcons.linkedin,
+        label: 'Connect on LinkedIn',
+        url: 'https://linkedin.com/in/sulmanfarooqq'),
+    _LinkData(
+        icon: FontAwesomeIcons.twitter,
+        label: 'Follow me on X',
+        url: 'https://twitter.com/sulmanfarooqq'),
     _LinkData(
         icon: Icons.email,
-        label: 'email me',
-        url: 'mailto:skinnedcartree@example.com'),
+        label: 'Email me',
+        url: 'mailto:sulmanfarooqq@example.com'),
   ];
 
   @override
@@ -74,38 +77,14 @@ class _InteractiveLinkPageState extends State<InteractiveLinkPage>
           // Background image
           Positioned.fill(
             child: Image.asset(
-              '6937351.jpg',
+              'assets/back(1).jpg',
               fit: BoxFit.cover,
             ),
           ),
-          // Remove animated gradient overlay to avoid overlaying background image
-          // Positioned.fill(
-          //   child: AnimatedBuilder(
-          //     animation: _controller,
-          //     builder: (context, child) {
-          //       return Container(
-          //         decoration: BoxDecoration(
-          //           gradient: LinearGradient(
-          //             colors: [
-          //               Colors.deepPurple.shade900.withOpacity(0.6),
-          //               Colors.deepPurple.shade700.withOpacity(0.6),
-          //               Colors.teal.shade900.withOpacity(0.6),
-          //               Colors.teal.shade700.withOpacity(0.6),
-          //             ],
-          //             begin: Alignment.topLeft,
-          //             end: Alignment.bottomRight,
-          //             stops: [
-          //               (_controller.value - 0.3).clamp(0.0, 1.0),
-          //               (_controller.value - 0.1).clamp(0.0, 1.0),
-          //               (_controller.value + 0.1).clamp(0.0, 1.0),
-          //               (_controller.value + 0.3).clamp(0.0, 1.0),
-          //             ],
-          //           ),
-          //         ),
-          //       );
-          //     },
-          //   ),
-          // ),
+          // Snow effect overlay
+          const Positioned.fill(
+            child: SnowEffect(),
+          ),
           // Content
           SafeArea(
             child: FadeTransition(
@@ -116,20 +95,23 @@ class _InteractiveLinkPageState extends State<InteractiveLinkPage>
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 24, vertical: 40),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        ProfileHeader(),
-                        const SizedBox(height: 32),
-                        ..._links
-                            .map((link) => LinkButton(
-                                  icon: link.icon,
-                                  label: link.label,
-                                  onTap: () => _launchUrl(link.url),
-                                ))
-                            .toList(),
-                      ],
+                    child: SingleChildScrollView(
+                      physics: const AlwaysScrollableScrollPhysics(),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          ProfileHeader(),
+                          const SizedBox(height: 32),
+                          ..._links
+                              .map((link) => LinkButton(
+                                    icon: link.icon,
+                                    label: link.label,
+                                    onTap: () => _launchUrl(link.url),
+                                  ))
+                              .toList(),
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -165,7 +147,7 @@ class _ProfileHeaderState extends State<ProfileHeader> {
         child: Column(
           children: [
             Semantics(
-              label: 'Profile picture of Corinne',
+              label: 'Profile picture of sulmanfarooqq',
               child: CircleAvatar(
                 radius: 60,
                 backgroundImage: const AssetImage('hero-banner.jpg'),
@@ -186,19 +168,20 @@ class _ProfileHeaderState extends State<ProfileHeader> {
             ),
             const SizedBox(height: 16),
             Text(
-              'Corinne',
+              'sulmanfarooqq',
               style: GoogleFonts.poppins(
                 fontSize: 28,
                 fontWeight: FontWeight.bold,
-                color: Colors.white.withOpacity(0.9),
+                color: const Color(0xFF3B2F2F), // Dark Brown primary text color
               ),
             ),
             const SizedBox(height: 4),
             Text(
-              '@skinnedcartree',
+              '@sulmanfarooqq',
               style: GoogleFonts.poppins(
                 fontSize: 16,
-                color: Colors.white70,
+                color:
+                    const Color(0xFFD4C7AE), // Muted Beige secondary text color
               ),
             ),
           ],
@@ -231,17 +214,20 @@ class _LinkButtonState extends State<LinkButton> {
   @override
   Widget build(BuildContext context) {
     final scale = _hovering ? 1.03 : (_pressed ? 0.97 : 1.0);
-    final backgroundColor = _hovering ? Colors.teal.shade700 : Colors.black87;
+    final backgroundColor =
+        _hovering ? const Color(0xFFE07A5F) : const Color(0xFF3B2F2F);
     final shadow = _hovering
         ? <BoxShadow>[
             BoxShadow(
-              color: Colors.tealAccent.withOpacity(0.6),
+              color: const Color(0xFFE07A5F).withOpacity(0.6),
               blurRadius: 12,
               spreadRadius: 1,
               offset: const Offset(0, 4),
             )
           ]
         : <BoxShadow>[];
+
+    final textColor = _hovering ? Colors.white : const Color(0xFF3B2F2F);
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
@@ -267,8 +253,8 @@ class _LinkButtonState extends State<LinkButton> {
               borderRadius: BorderRadius.circular(30),
               boxShadow: shadow,
               gradient: _hovering
-                  ? LinearGradient(
-                      colors: [Colors.teal.shade600, Colors.teal.shade900],
+                  ? const LinearGradient(
+                      colors: [Color(0xFFE07A5F), Color(0xFFC4A484)],
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
                     )
@@ -277,13 +263,13 @@ class _LinkButtonState extends State<LinkButton> {
             padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 20),
             child: Row(
               children: [
-                Icon(widget.icon, color: Colors.tealAccent, size: 24),
+                Icon(widget.icon, color: const Color(0xFFC4A484), size: 24),
                 const SizedBox(width: 20),
                 Expanded(
                   child: Text(
                     widget.label,
                     style: GoogleFonts.poppins(
-                      color: Colors.white,
+                      color: _hovering ? Colors.white : Colors.white70,
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
                     ),
@@ -340,4 +326,113 @@ class _LinkData {
   final String url;
 
   _LinkData({required this.icon, required this.label, required this.url});
+}
+
+class SnowEffect extends StatefulWidget {
+  const SnowEffect({Key? key}) : super(key: key);
+
+  @override
+  State<SnowEffect> createState() => _SnowEffectState();
+}
+
+class _SnowEffectState extends State<SnowEffect>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  final List<_Snowflake> _snowflakes = [];
+
+  final int _numSnowflakes = 100;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 20),
+    )..repeat();
+
+    for (int i = 0; i < _numSnowflakes; i++) {
+      _snowflakes.add(_Snowflake.random());
+    }
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedBuilder(
+      animation: _controller,
+      builder: (context, child) {
+        return CustomPaint(
+          painter: _SnowPainter(_snowflakes, _controller.value),
+          child: Container(),
+        );
+      },
+    );
+  }
+}
+
+class _Snowflake {
+  Offset position;
+  double radius;
+  double speed;
+  double swayAmplitude;
+  double swayFrequency;
+  double initialSwayPhase;
+
+  _Snowflake({
+    required this.position,
+    required this.radius,
+    required this.speed,
+    required this.swayAmplitude,
+    required this.swayFrequency,
+    required this.initialSwayPhase,
+  });
+
+  factory _Snowflake.random() {
+    final random = Random();
+    return _Snowflake(
+      position: Offset(random.nextDouble(), random.nextDouble()),
+      radius: 1 + random.nextDouble() * 2,
+      speed: 0.01 + random.nextDouble() * 0.02,
+      swayAmplitude: 0.01 + random.nextDouble() * 0.02,
+      swayFrequency: 1 + random.nextDouble() * 3,
+      initialSwayPhase: random.nextDouble() * 2 * 3.1415926535897932,
+    );
+  }
+
+  Offset getPosition(double animationValue) {
+    final dx = position.dx +
+        swayAmplitude *
+            sin(swayFrequency * animationValue * 2 * 3.1415926535897932 +
+                initialSwayPhase);
+    final dy = (position.dy + speed * animationValue) % 1.0;
+    return Offset(dx, dy);
+  }
+}
+
+class _SnowPainter extends CustomPainter {
+  final List<_Snowflake> snowflakes;
+  final double animationValue;
+
+  _SnowPainter(this.snowflakes, this.animationValue);
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()..color = Colors.white.withOpacity(0.8);
+
+    for (final snowflake in snowflakes) {
+      final pos = snowflake.getPosition(animationValue);
+      final offset = Offset(pos.dx * size.width, pos.dy * size.height);
+      canvas.drawCircle(offset, snowflake.radius, paint);
+    }
+  }
+
+  @override
+  bool shouldRepaint(covariant _SnowPainter oldDelegate) {
+    return true;
+  }
 }
