@@ -30,15 +30,15 @@ class _InteractiveLinkPageState extends State<InteractiveLinkPage>
     _LinkData(
         icon: FontAwesomeIcons.linkedin,
         label: 'Connect on LinkedIn',
-        url: 'https://linkedin.com/in/sulmanfarooqq'),
+        url: 'https://www.linkedin.com/in/sulman-farooqq-067b31370/'),
     _LinkData(
         icon: FontAwesomeIcons.twitter,
         label: 'Follow me on X',
-        url: 'https://twitter.com/sulmanfarooqq'),
+        url: 'https://x.com/sulmanfarooqq'),
     _LinkData(
         icon: Icons.email,
         label: 'Email me',
-        url: 'mailto:sulmanfarooqq@example.com'),
+        url: 'mailto:sulmanfarooq28@gmail.com'),
   ];
 
   @override
@@ -168,7 +168,7 @@ class _ProfileHeaderState extends State<ProfileHeader> {
             ),
             const SizedBox(height: 16),
             Text(
-              'sulmanfarooqq',
+              'sulman',
               style: GoogleFonts.poppins(
                 fontSize: 28,
                 fontWeight: FontWeight.bold,
