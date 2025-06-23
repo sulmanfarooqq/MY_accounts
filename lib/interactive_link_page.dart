@@ -109,14 +109,19 @@ class _InteractiveLinkPageState extends State<InteractiveLinkPage>
                   // Left side content (e.g., Logo or Title)
                   Row(
                     children: [
-                      Icon(Icons.menu, color: const Color(0xFFD4C7AE)),
+                      Icon(
+                        Icons.menu,
+                        color: const Color(0xFFD4C7AE),
+                        size: MediaQuery.of(context).size.width < 600 ? 18 : 24,
+                      ),
                       const SizedBox(width: 8),
                       Text(
                         'Accounts',
                         style: GoogleFonts.poppins(
                           color: const Color.fromARGB(
                               255, 235, 225, 225), // Earthy Orange
-                          fontSize: 20,
+                          fontSize:
+                              MediaQuery.of(context).size.width < 600 ? 16 : 20,
                           fontWeight: FontWeight.bold,
                           shadows: [
                             Shadow(
