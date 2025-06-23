@@ -2,6 +2,7 @@ import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -116,19 +117,74 @@ class _InteractiveLinkPageState extends State<InteractiveLinkPage>
                           color: const Color(0xFFE07A5F), // Earthy Orange
                           fontSize: 22,
                           fontWeight: FontWeight.bold,
+                          shadows: [
+                            Shadow(
+                              blurRadius: 10,
+                              color: const Color(0xFFE07A5F),
+                              offset: Offset(0, 0),
+                            ),
+                            Shadow(
+                              blurRadius: 20,
+                              color: const Color(0xFFE07A5F),
+                              offset: Offset(0, 0),
+                            ),
+                          ],
                         ),
                       ),
                     ],
                   ),
-                  // Right side content (Share icon)
-                  IconButton(
+                  // Right side content (Share menu)
+                  PopupMenuButton<String>(
                     icon: const Icon(Icons.share, color: Color(0xFFE07A5F)),
-                    onPressed: () {
-                      // TODO: Implement share functionality
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Share clicked')),
-                      );
+                    onSelected: (value) async {
+                      if (value == 'copy_url') {
+                        final data =
+                            ClipboardData(text: 'https://yourwebsite.com');
+                        await Clipboard.setData(data);
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                              content: Text('URL copied to clipboard')),
+                        );
+                      } else if (value == 'whatsapp') {
+                        final whatsappUrl = Uri.parse(
+                            'https://wa.me/?text=https://yourwebsite.com');
+                        if (await canLaunchUrl(whatsappUrl)) {
+                          await launchUrl(whatsappUrl,
+                              mode: LaunchMode.externalApplication);
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                                content: Text('Could not open WhatsApp')),
+                          );
+                        }
+                      } else if (value == 'twitter') {
+                        final twitterUrl = Uri.parse(
+                            'https://twitter.com/intent/tweet?url=https://yourwebsite.com');
+                        if (await canLaunchUrl(twitterUrl)) {
+                          await launchUrl(twitterUrl,
+                              mode: LaunchMode.externalApplication);
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                                content: Text('Could not open Twitter')),
+                          );
+                        }
+                      }
                     },
+                    itemBuilder: (context) => [
+                      const PopupMenuItem(
+                        value: 'copy_url',
+                        child: Text('Copy URL'),
+                      ),
+                      const PopupMenuItem(
+                        value: 'whatsapp',
+                        child: Text('Share on WhatsApp'),
+                      ),
+                      const PopupMenuItem(
+                        value: 'twitter',
+                        child: Text('Share on Twitter'),
+                      ),
+                    ],
                   ),
                 ],
               ),
