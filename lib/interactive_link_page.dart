@@ -111,7 +111,7 @@ class _InteractiveLinkPageState extends State<InteractiveLinkPage>
                       Icon(Icons.menu, color: const Color(0xFFE07A5F)),
                       const SizedBox(width: 8),
                       Text(
-                        'My Portfolio',
+                        'My Accounts',
                         style: GoogleFonts.poppins(
                           color: const Color(0xFFE07A5F), // Earthy Orange
                           fontSize: 22,
