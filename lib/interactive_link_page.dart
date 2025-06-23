@@ -13,6 +13,14 @@ class InteractiveLinkPage extends StatefulWidget {
   State<InteractiveLinkPage> createState() => _InteractiveLinkPageState();
 }
 
+class _LinkData {
+  final IconData icon;
+  final String label;
+  final String url;
+
+  _LinkData({required this.icon, required this.label, required this.url});
+}
+
 class _InteractiveLinkPageState extends State<InteractiveLinkPage>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
@@ -30,7 +38,7 @@ class _InteractiveLinkPageState extends State<InteractiveLinkPage>
     _LinkData(
         icon: FontAwesomeIcons.linkedin,
         label: 'Connect on LinkedIn',
-        url: 'https://www.linkedin.com/in/sulman-farooqq-067b31370/'),
+        url: 'https://www.linkedin.com/in/sulman-farooqq-067b31370/r'),
     _LinkData(
         icon: FontAwesomeIcons.twitter,
         label: 'Follow me on X',
@@ -61,7 +69,7 @@ class _InteractiveLinkPageState extends State<InteractiveLinkPage>
     final Uri uri = Uri.parse(url);
     if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Could not launch $url')),
+        const SnackBar(content: Text('Could not launch URL')),
       );
     }
   }
@@ -84,6 +92,42 @@ class _InteractiveLinkPageState extends State<InteractiveLinkPage>
           // Snow effect overlay
           const Positioned.fill(
             child: SnowEffect(),
+          ),
+          // Top header bar
+          SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  // Left side content (e.g., Logo or Title)
+                  Row(
+                    children: [
+                      Icon(Icons.menu, color: const Color(0xFFE07A5F)),
+                      const SizedBox(width: 8),
+                      Text(
+                        'My Portfolio',
+                        style: GoogleFonts.poppins(
+                          color: const Color(0xFFE07A5F), // Earthy Orange
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                  // Right side content (Share icon)
+                  IconButton(
+                    icon: const Icon(Icons.share, color: Color(0xFFE07A5F)),
+                    onPressed: () {
+                      // TODO: Implement share functionality
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Share clicked')),
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ),
           ),
           // Content
           SafeArea(
@@ -110,6 +154,8 @@ class _InteractiveLinkPageState extends State<InteractiveLinkPage>
                                     onTap: () => _launchUrl(link.url),
                                   ))
                               .toList(),
+                          const SizedBox(height: 40),
+                          const Footer(),
                         ],
                       ),
                     ),
@@ -320,12 +366,24 @@ class AnimatedBackground extends StatelessWidget {
   }
 }
 
-class _LinkData {
-  final IconData icon;
-  final String label;
-  final String url;
+// Footer widget definition
+class Footer extends StatelessWidget {
+  const Footer({Key? key}) : super(key: key);
 
-  _LinkData({required this.icon, required this.label, required this.url});
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 16.0),
+      child: Text(
+        '© 2024 sulmanfarooqq. All rights reserved.',
+        style: GoogleFonts.poppins(
+          fontSize: 12,
+          color: Colors.white70,
+        ),
+        textAlign: TextAlign.center,
+      ),
+    );
+  }
 }
 
 class SnowEffect extends StatefulWidget {
