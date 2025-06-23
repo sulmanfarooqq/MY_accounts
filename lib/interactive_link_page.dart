@@ -274,7 +274,7 @@ class _ProfileHeaderState extends State<ProfileHeader> {
               label: 'Profile picture of sulmanfarooqq',
               child: CircleAvatar(
                 radius: 60,
-                backgroundImage: const AssetImage('hero-banner.jpg'),
+                backgroundImage: const AssetImage('assets/hero-banner.jpg'),
                 // Add subtle shadow
                 child: Container(
                   decoration: BoxDecoration(
