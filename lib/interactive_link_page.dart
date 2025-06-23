@@ -109,18 +109,19 @@ class _InteractiveLinkPageState extends State<InteractiveLinkPage>
                   // Left side content (e.g., Logo or Title)
                   Row(
                     children: [
-                      Icon(Icons.menu, color: const Color(0xFFE07A5F)),
+                      Icon(Icons.menu, color: const Color(0xFFD4C7AE)),
                       const SizedBox(width: 8),
                       Text(
-                        'My Accounts',
+                        'Accounts',
                         style: GoogleFonts.poppins(
-                          color: const Color(0xFFE07A5F), // Earthy Orange
-                          fontSize: 22,
+                          color: const Color.fromARGB(
+                              255, 235, 225, 225), // Earthy Orange
+                          fontSize: 20,
                           fontWeight: FontWeight.bold,
                           shadows: [
                             Shadow(
                               blurRadius: 10,
-                              color: const Color(0xFFE07A5F),
+                              color: const Color(0xFFD4C7AE),
                               offset: Offset(0, 0),
                             ),
                             Shadow(
@@ -135,7 +136,7 @@ class _InteractiveLinkPageState extends State<InteractiveLinkPage>
                   ),
                   // Right side content (Share menu)
                   PopupMenuButton<String>(
-                    icon: const Icon(Icons.share, color: Color(0xFFE07A5F)),
+                    icon: const Icon(Icons.share, color: Color(0xFFD4C7AE)),
                     onSelected: (value) async {
                       if (value == 'copy_url') {
                         final data =
@@ -290,7 +291,7 @@ class _ProfileHeaderState extends State<ProfileHeader> {
               style: GoogleFonts.poppins(
                 fontSize: 28,
                 fontWeight: FontWeight.bold,
-                color: const Color(0xFF3B2F2F), // Dark Brown primary text color
+                color: const Color(0xFFD4C7AE), // Dark Brown primary text color
               ),
             ),
             const SizedBox(height: 4),
