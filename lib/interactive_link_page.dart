@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'about_me_page.dart';
 
 class InteractiveLinkPage extends StatefulWidget {
   const InteractiveLinkPage({Key? key}) : super(key: key);
@@ -47,6 +48,10 @@ class _InteractiveLinkPageState extends State<InteractiveLinkPage>
         icon: Icons.email,
         label: 'Email me',
         url: 'mailto:sulmanfarooq28@gmail.com'),
+    _LinkData(
+        icon: Icons.person,
+        label: 'About Me',
+        url: 'about_me'), // special url to trigger navigation
   ];
 
   @override
@@ -151,7 +156,18 @@ class _InteractiveLinkPageState extends State<InteractiveLinkPage>
                               .map((link) => LinkButton(
                                     icon: link.icon,
                                     label: link.label,
-                                    onTap: () => _launchUrl(link.url),
+                                    onTap: () {
+                                      if (link.url == 'about_me') {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const AboutMePage()),
+                                        );
+                                      } else {
+                                        _launchUrl(link.url);
+                                      }
+                                    },
                                   ))
                               .toList(),
                           const SizedBox(height: 40),
