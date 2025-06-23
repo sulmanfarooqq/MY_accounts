@@ -118,8 +118,8 @@ class _InteractiveLinkPageState extends State<InteractiveLinkPage>
                       Text(
                         'Accounts',
                         style: GoogleFonts.poppins(
-                          color: const Color.fromARGB(
-                              255, 235, 225, 225), // Earthy Orange
+                          color: const Color.fromRGBO(
+                              212, 199, 174, 1), // Earthy Orange
                           fontSize:
                               MediaQuery.of(context).size.width < 600 ? 16 : 20,
                           fontWeight: FontWeight.bold,
