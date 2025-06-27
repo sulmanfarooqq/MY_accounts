@@ -40,7 +40,7 @@ class _InteractiveLinkPageState extends State<InteractiveLinkPage>
     _LinkData(
         icon: FontAwesomeIcons.linkedin,
         label: 'Connect on LinkedIn',
-        url: 'https://www.linkedin.com/in/sulman-farooqq-067b31370/r'),
+        url: 'https://www.linkedin.com/in/sulmanfarooqq/'),
     _LinkData(
         icon: FontAwesomeIcons.twitter,
         label: 'Follow me on X',
@@ -144,8 +144,8 @@ class _InteractiveLinkPageState extends State<InteractiveLinkPage>
                     icon: const Icon(Icons.share, color: Color(0xFFD4C7AE)),
                     onSelected: (value) async {
                       if (value == 'copy_url') {
-                        final data =
-                            ClipboardData(text: 'https://yourwebsite.com');
+                        final data = ClipboardData(
+                            text: 'https://sulmanfarooqq.netlify.app');
                         await Clipboard.setData(data);
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
@@ -153,7 +153,7 @@ class _InteractiveLinkPageState extends State<InteractiveLinkPage>
                         );
                       } else if (value == 'whatsapp') {
                         final whatsappUrl = Uri.parse(
-                            'https://wa.me/?text=https://yourwebsite.com');
+                            'https://wa.me/?text=https://sulmanfarooqq.netlify.app');
                         if (await canLaunchUrl(whatsappUrl)) {
                           await launchUrl(whatsappUrl,
                               mode: LaunchMode.externalApplication);
@@ -165,7 +165,7 @@ class _InteractiveLinkPageState extends State<InteractiveLinkPage>
                         }
                       } else if (value == 'twitter') {
                         final twitterUrl = Uri.parse(
-                            'https://twitter.com/intent/tweet?url=https://yourwebsite.com');
+                            'https://twitter.com/intent/tweet?url=https://sulmanfarooqq.netlify.app');
                         if (await canLaunchUrl(twitterUrl)) {
                           await launchUrl(twitterUrl,
                               mode: LaunchMode.externalApplication);
@@ -187,8 +187,8 @@ class _InteractiveLinkPageState extends State<InteractiveLinkPage>
                         child: Text('Share on WhatsApp'),
                       ),
                       const PopupMenuItem(
-                        value: 'twitter',
-                        child: Text('Share on Twitter'),
+                        value: 'X (formerly Twitter)',
+                        child: Text('Share on X (formerly Twitter)'),
                       ),
                     ],
                   ),

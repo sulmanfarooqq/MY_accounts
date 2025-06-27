@@ -36,7 +36,7 @@ class AboutMePage extends StatelessWidget {
               style: textTheme.bodyMedium!.copyWith(
                 fontSize: 16,
                 height: 1.5,
-                color: Colors.white,
+                color: Colors.white, // use this color 0xFFD4C7AE
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
