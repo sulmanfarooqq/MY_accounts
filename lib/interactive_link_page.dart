@@ -46,6 +46,10 @@ class _InteractiveLinkPageState extends State<InteractiveLinkPage>
         label: 'Follow me on X',
         url: 'https://x.com/sulmanfarooqq'),
     _LinkData(
+        icon: FontAwesomeIcons.threads,
+        label: 'Follow me on thread',
+        url: 'https://www.threads.com/@sulmanfarooqq'),
+    _LinkData(
         icon: Icons.email,
         label: 'Email me',
         url: 'mailto:sulmanfarooq28@gmail.com'),
